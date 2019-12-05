@@ -1,0 +1,101 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Helvetica;
+  font-size: 24px;
+  background-color: Green;
+}
+
+/* div.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 50px;
+} */
+
+canvas {
+  margin: 10px;
+  border: 2px gray solid;
+}
+
+video {
+    margin: 10px;
+    border: 2px gray solid;
+  }
+.loading {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 1px;
+  }
+.loading:after {
+animation: loading 0.5s infinite linear;
+border: 0.1rem solid rgba(0, 0, 0, 0.95);
+border-radius: 50%;
+border-right-color: transparent;
+border-top-color: transparent;
+content: '';
+display: block;
+height: 0.8rem;
+left: 50%;
+margin-left: -0.4rem;
+margin-top: -0.4rem;
+position: absolute;
+top: 50%;
+width: 0.8rem;
+z-index: 1;
+}
+#statusBox {
+    background-image: linear-gradient(
+     108.7deg,
+     rgba(34, 219, 231, 1) -0.9%,
+     rgba(52, 118, 246, 1) 88.7%
+    );
+    width: 0;
+    border-radius: 10px;
+    height: 30px;
+    transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+ }
+#loader {
+    position: absolute;
+    margin-left: 4px;
+    margin-top: 3px;
+}
+#status {
+    background: #11acf4;
+    width: 100%;
+    text-align: -webkit-right;
+    text-align:  right;
+}
+#statusCode {
+    position: absolute;
+    left: 30px;
+    color: #fff;
+}
+.avatar-lamp {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 90px;
+    filter: blur(1px);
+}
+  /**** ANIMATIONS ****/
+.progress-animation {
+    animation-name: colorchanger;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+#stopStreaming {
+    display: none;
+    position: absolute;
+    right: -30px;
+    top: 10px;
+    color: #bbbbbb;
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
