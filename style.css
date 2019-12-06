@@ -5,16 +5,14 @@ body {
   font-family: Helvetica;
   font-size: 24px;
   background-color: Green;
+  position:absolute;
 }
 
-/* div.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin: 50px;
-} */
+/* .wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+  } */
 
 canvas {
   margin: 10px;
@@ -25,27 +23,29 @@ video {
     margin: 10px;
     border: 2px gray solid;
   }
+
 .loading {
     position: absolute;
     margin-left: 10px;
     margin-top: 1px;
   }
+
 .loading:after {
-animation: loading 0.5s infinite linear;
-border: 0.1rem solid rgba(0, 0, 0, 0.95);
-border-radius: 50%;
-border-right-color: transparent;
-border-top-color: transparent;
-content: '';
-display: block;
-height: 0.8rem;
-left: 50%;
-margin-left: -0.4rem;
-margin-top: -0.4rem;
-position: absolute;
-top: 50%;
-width: 0.8rem;
-z-index: 1;
+    animation: loading 0.5s infinite linear;
+    border: 0.1rem solid rgba(0, 0, 0, 0.95);
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: '';
+    display: block;
+    height: 0.8rem;
+    left: 50%;
+    margin-left: -0.4rem;
+    margin-top: -0.4rem;
+    position: absolute;
+    top: 50%;
+    width: 0.8rem;
+    z-index: 1;
 }
 #statusBox {
     background-image: linear-gradient(
@@ -73,6 +73,7 @@ z-index: 1;
     position: absolute;
     left: 30px;
     color: #fff;
+    background-color: rgb(62, 95, 161, 0);
 }
 .avatar-lamp {
     position: absolute;

@@ -184,6 +184,7 @@ function stopStreamedVideo(videoElem) {
 var video = document.getElementById("myVideo");
 var count = 0;
 var no_detection = 0;
+var recognizing = false;
 video.addEventListener("play", () => {
     setTimeout(() => {
         statusCode.innerHTML = "just a moment please..";
@@ -212,7 +213,8 @@ video.addEventListener("play", () => {
             //   console.log(detections[0].expressions)
             // only call startExercise if count reaches 5
             else if (count >= 5) {
-                if (count == 5) {
+                // console.log(recognition)
+                if (!recognizing) {
                     recognition.start();
                 }
                 startExercise(count - 5);
@@ -231,12 +233,12 @@ video.addEventListener("play", () => {
         if (statusCode.innerHTML != lastCode) {
             speakText(statusCode.innerHTML);
         }
-        console.log(count)
+        console.log(count);
     }, 1000);
 });
 
 
-var exercises = ["Squat", "Warrior Pose", "Knee Lift", "Crunch"];
+var exercises = ["Squat", "Warrior One Pose", "Knee Lift", "Crunch"];
 var shuffledExercises = shuffle(exercises)
 function startExercise(time) {
     if (time % 30 == 0) {
@@ -282,18 +284,25 @@ function speakText(text) {
 recognition.onresult = processSpeech;
 
 function processSpeech(event) {
-  var inputSpeech = event.results[0][0].transcript;
-  var textDiv = document.getElementById("speech");
-  console.log("I see, " + inputSpeech);
-  if (inputSpeech == "next move") {
-      count += 35 - count % 30;
-  }
-  recognition.stop();
+    var inputSpeech = event.results[0][0].transcript;
+    var textDiv = document.getElementById("speech");
+    console.log("I see, " + inputSpeech);
+    if (inputSpeech == "next move") {
+        count += 35 - count % 30;
+    }
+    recognition.stop();
 }
 
+recognition.onstart = recognitionStarted;
 recognition.onend = recognitionEnded;
 
+
+function recognitionStarted() {
+    console.log("onstart happened");
+    recognizing = true;
+
+}
 function recognitionEnded() {
-  console.log("onend happened");
-  recognition.start();
+    console.log("onend happened");
+    recognizing = false;
 }
