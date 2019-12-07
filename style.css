@@ -19,9 +19,17 @@ canvas {
   border: 2px gray solid;
 }
 
+#mainCanvas {
+  margin: 0 20%;
+}
+
+#instruction {
+  margin: 0 10%;
+}
 video {
     margin: 10px;
     border: 2px gray solid;
+    display: none;
   }
 
 .loading {

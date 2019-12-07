@@ -86,7 +86,7 @@ function run() {
     ctx = canvas.getContext('2d');
     eyes = [];
     width = innerWidth;
-    height = innerHeight - 400;
+    height = innerHeight - 600;
     canvas.width = width;
     canvas.height = height;
     mx = width / 2;
@@ -129,6 +129,7 @@ const statusBox = document.querySelector("#statusBox");
 const avatarLamp = document.querySelector(".avatar-lamp");
 const stopStreaming = document.querySelector("#stopStreaming");
 const videoCanvas = document.getElementById("mainCanvas");
+const instructionImg = document.getElementById("instruction");
 const videoCtx = videoCanvas.getContext("2d");
 
 statusCode.innerHTML = "loading module...";
@@ -227,6 +228,7 @@ video.addEventListener("play", () => {
             count = 0;
             statusCode.innerHTML = "can't see you!..";
             avatarLamp.style.backgroundColor = "#ccc";
+            instructionImg.style.display = "none";
             recognition.stop();
             console.log("Recognition stopped since there is no detection");
         }
@@ -238,12 +240,14 @@ video.addEventListener("play", () => {
 });
 
 
-var exercises = ["Squat", "Warrior One Pose", "Knee Lift", "Crunch"];
+var exercises = ["Squat", "Jumping", "Lunge", "Crunch"];
 var shuffledExercises = shuffle(exercises)
 function startExercise(time) {
     if (time % 30 == 0) {
         var index = Math.floor(time / 30) % exercises.length;
         statusCode.innerHTML = shuffledExercises[index]
+        instructionImg.style.display = "";
+        instructionImg.src = "./instruction/" + shuffledExercises[index] + ".gif"
     }
 }
 
