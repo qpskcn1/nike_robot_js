@@ -200,7 +200,7 @@ video.addEventListener("play", () => {
         const displaySize = { width: video.width, height: video.height };
         const resizedDetections = faceapi.resizeResults(detections, displaySize);
         faceapi.draw.drawDetections(videoCanvas, resizedDetections);
-        // faceapi.draw.drawFaceExpressions(videoCanvas, resizedDetections);
+        faceapi.draw.drawFaceExpressions(videoCanvas, resizedDetections);
         var lastCode = statusCode.innerHTML;
         if (detections[0]) {
             if (count == 0) {
@@ -210,13 +210,17 @@ video.addEventListener("play", () => {
                 statusCode.innerHTML = "Hold for 3 seconds";
                 loader.style.display = "none"; // hide preloader
                 avatarLamp.style.backgroundColor = "lightgreen";
-            }
-            //   console.log(detections[0].expressions)
-            // only call startExercise if count reaches 5
-            else if (count >= 5) {
+            } else if (count >= 5) {
+                // only call startExercise if count reaches 5
                 // console.log(recognition)
                 if (!recognizing) {
                     recognition.start();
+                }
+                // console.log(detections[0].expressions.sad)
+                if (detections[0].expressions.sad > 0.9) {
+                    speakText("You look sad, cheer up!");
+                } else if (detections[0].expressions.angry > 0.85) {
+                    speakText("Easy");
                 }
                 startExercise(count - 5);
             }
